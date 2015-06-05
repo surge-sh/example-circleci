@@ -1,4 +1,4 @@
-# CircleCI example [![CircleCI Status for surge-sh/example-circleci](https://circleci.com/projects/86b9dbb0-eb83-0132-4c31-26192dc48311/status?branch=master)](https://circleci.com/projects/83463)
+# CircleCI example [![Circle CI](https://circleci.com/gh/surge-sh/example-circleci.svg?style=svg)](https://circleci.com/gh/surge-sh/example-circleci)
 
 An example using [CircleCI](https://circleci.com) for continuous deployment to [Surge.sh](https://surge.sh).
 
