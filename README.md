@@ -24,7 +24,7 @@ You’ll be asked to login again, and afterwards your token will be displayed li
 token: a142e09a6b13a21be512b141241c7123
 ```
 
-![Getting your token from the Surge CLI.](http://localhost:5001/images/help/integrating-with-circleci.gif)
+![Getting your token from the Surge CLI.](https://surge.sh/images/help/integrating-with-circleci.gif)
 
 ### Adding Surge as a `devDependency` to a `package.json` file
 
@@ -70,7 +70,7 @@ Commit this change, and push it to your repo. Now, even if you don’t have test
 
 Now you can login and setup a new project on CircleCI. Choose the GitHub organisation your project is in (_surge-sh_ in this example) and then build your project’s GitHub repository:
 
-![Add the GitHub repository your project is stored in. This example is using the surge-sh/example-circleci repo.](http://localhost:5001/images/help/integrating-with-circleci-2.png)
+![Add the GitHub repository your project is stored in. This example is using the surge-sh/example-circleci repo.](https://surge.sh/images/help/integrating-with-circleci-2.png)
 
 ### Add Environment Variables
 
@@ -84,7 +84,7 @@ SURGE_LOGIN
 
 …and set it to the email address you use with Surge.
 
-![Adding SURGE_TOKEN` as an environment variable.](http://localhost:5001/images/help/integrating-with-circleci-3.png)
+![Adding SURGE_TOKEN` as an environment variable.](https://surge.sh/images/help/integrating-with-circleci-3.png)
 
 Next, add another environment variable called:
 
@@ -94,16 +94,30 @@ SURGE_TOKEN
 
 …and set it to your Surge token.
 
-![Adding SURGE_TOKEN` as an environment variable.](http://localhost:5001/images/help/integrating-with-circleci-4.png)
+![Adding SURGE_TOKEN` as an environment variable.](https://surge.sh/images/help/integrating-with-circleci-4.png)
 
-## Run Surge on CircleCI
+### Push a `circle.yml` file
 
-Now you’re ready to run your deployment step with `surge` on CircleCI.
+The last step is to add a `circle.yml` file to your project.
 
+> …the`circle.yml` file makes it easy to tell CircleCI what you need. This is a simple YAML file where you spell out any tweaks required for your web app. You place the file in your git repo's root directory and CircleCI reads the file each time it runs a build.
+> <footer>CircleCI <cite>[Configuring CircleCI](https://circleci.com/docs/configuration)</cite></footer>
 
-***
+Your `circle.yml` file should look something like this:
 
-Now, when you push your project to GitHub again, this command will be run and your project will get published automatically.
+```yml
+deployment:
+  production:
+    branch: master
+    commands:
+      - surge --project ./path/to/your-project --domain your-project.surge.sh
+```
+
+After you push to your repository, CircleCI will run this `surge` command. Replace `./path/to/your-project` with the path to the source files in your repository, and `your-project.surge.sh` with the domain you’d like to publish to.
+
+There are more examples of what you can do with a `circle.yml` file [directly from CircleCI](https://circleci.com/docs/configuration).
+
+Now, when you push your project to GitHub again, your deployment command will be run and your project will get published automatically.
 
 ## License
 
